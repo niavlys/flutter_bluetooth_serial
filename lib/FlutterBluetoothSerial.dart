@@ -281,4 +281,11 @@ class FlutterBluetoothSerial {
     _defaultConnection!.output.add(message);
     return _defaultConnection!.output.allSent;
   }
+
+  /// Ensure permission.
+  Future<bool> ensurePermission() async {
+    final bool granted =
+        await (_methodChannel.invokeMethod('ensurePermissions'));
+    return granted;
+  }
 }

@@ -445,14 +445,27 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
 
     private void ensurePermissions(EnsurePermissionsCallback callbacks) {
         if (
-                ContextCompat.checkSelfPermission(activity,
+                ContextCompat.checkSelfPermission(activity, 
                         Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED
-                        || ContextCompat.checkSelfPermission(activity,
+                        || 
+                ContextCompat.checkSelfPermission(activity,
                         Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
+                        != PackageManager.PERMISSION_GRANTED 
+                        
+                        ||
+                ContextCompat.checkSelfPermission(activity,
+                        Manifest.permission.BLUETOOTH_SCAN)
+                        != PackageManager.PERMISSION_GRANTED 
+
+                        ||
+                ContextCompat.checkSelfPermission(activity,
+                        Manifest.permission.BLUETOOTH_CONNECT)
+                        != PackageManager.PERMISSION_GRANTED) 
+                                        
+                        {
             ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN},
                     REQUEST_COARSE_LOCATION_PERMISSIONS);
 
             pendingPermissionsEnsureCallbacks = callbacks;
